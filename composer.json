@@ -13,12 +13,13 @@
     "webmozart/assert": "^1.3"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-master",
     "friendsofphp/php-cs-fixer": "^2.19",
+    "matthiasnoback/symfony-config-test": "^4.2",
     "phpro/grumphp": "^1.4.0",
     "phpstan/phpstan": "^0.12.97",
     "phpstan/phpstan-webmozart-assert": "^0.12.16",
     "phpunit/phpunit": "^9.5",
+    "roave/security-advisories": "dev-master",
     "symfony/phpunit-bridge": "^5.3"
   },
   "autoload": {
