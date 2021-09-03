@@ -1,0 +1,240 @@
+{
+    "data": [
+        {
+            "CountryID": 191,
+            "CenterID": 333,
+            "ShortName": "CR3403",
+            "Delivery": true,
+            "Dropoff": false,
+            "GeoLat": 45.97585870,
+            "GeoLong": 17.17087710,
+            "Address": {
+                "Name": "BS KLOŠTAR PODRAVSKI",
+                "ZipCode": "48362",
+                "Place": "KLOŠTAR PODRAVSKI",
+                "Street": "UL. KRALJA TOMISLAVA 83",
+                "CountryPrefix": "HR",
+                "Language": "HR",
+                "Type": 0
+            },
+            "WorkingHours": [
+                {
+                    "Type": 1,
+                    "TypeName": "LS.Radnim_danom",
+                    "From": "06:00:00",
+                    "Until": "22:00:00"
+                },
+                {
+                    "Type": 1,
+                    "TypeName": "Radnim danom",
+                    "From": "08:00:00",
+                    "Until": "16:00:00"
+                },
+                {
+                    "Type": 1,
+                    "TypeName": "Radnim danom",
+                    "From": "08:00:00",
+                    "Until": "16:00:00"
+                }
+            ],
+            "IsActive": true
+        },
+        {
+            "CountryID": 191,
+            "CenterID": 10,
+            "ShortName": "IN702",
+            "Delivery": true,
+            "Dropoff": false,
+            "GeoLat": 45.81431160,
+            "GeoLong": 15.97721830,
+            "Address": {
+                "Name": "IN702",
+                "ZipCode": "10000",
+                "Place": "ZAGREB",
+                "Street": "TRŽNICA DOLAC HALA 3",
+                "CountryPrefix": "HR",
+                "Language": "HR",
+                "Type": 0
+            },
+            "WorkingHours": [
+                {
+                    "Type": 2,
+                    "TypeName": "LS.Subotom",
+                    "From": "06:30:00",
+                    "Until": "14:00:00"
+                },
+                {
+                    "Type": 3,
+                    "TypeName": "LS.Nedjeljom",
+                    "From": "07:00:00",
+                    "Until": "13:00:00"
+                },
+                {
+                    "Type": 8,
+                    "TypeName": "LS.Utorak",
+                    "From": "06:30:00",
+                    "Until": "14:00:00"
+                },
+                {
+                    "Type": 9,
+                    "TypeName": "LS.Srijeda",
+                    "From": "06:30:00",
+                    "Until": "14:00:00"
+                },
+                {
+                    "Type": 10,
+                    "TypeName": "LS.Četvrtak",
+                    "From": "06:30:00",
+                    "Until": "14:00:00"
+                },
+                {
+                    "Type": 11,
+                    "TypeName": "LS.Petak",
+                    "From": "06:30:00",
+                    "Until": "14:00:00"
+                }
+            ],
+            "IsActive": true
+        },
+        {
+            "CountryID": 191,
+            "CenterID": 10,
+            "ShortName": "OEXZG",
+            "EnterDate": "2019-10-01T00:00:00",
+            "Remark": "ISPORUKE I PREUZIMANJA U POSLOVNICI, neaktivno",
+            "Delivery": true,
+            "Dropoff": true,
+            "GeoLat": 45.75366760,
+            "GeoLong": 15.89560960,
+            "Address": {
+                "Name": "POSLOVNICA",
+                "ZipCode": "10251",
+                "Place": "HRVATSKI LESKOVAC",
+                "Street": "ZASTAVNICE",
+                "HouseNumber": 38,
+                "HouseNumberAddition": "A",
+                "CountryPrefix": "HR",
+                "Language": "HR",
+                "Type": 0
+            },
+            "WorkingHours": [
+                {
+                    "Type": 1,
+                    "TypeName": "Radnim danom",
+                    "From": "08:00:00",
+                    "Until": "20:00:00"
+                }
+            ],
+            "IsActive": true
+        },
+        {
+            "CountryID": 191,
+            "CenterID": 343,
+            "ShortName": "OEXBJ",
+            "Delivery": true,
+            "Dropoff": true,
+            "GeoLat": 45.89170900,
+            "GeoLong": 16.83863500,
+            "Address": {
+                "Name": "POSLOVNICA",
+                "ZipCode": "43000",
+                "Place": "BJELOVAR",
+                "Street": "BJELOVAR",
+                "CountryPrefix": "HR",
+                "Language": "HR",
+                "Type": 0
+            },
+            "WorkingHours": [
+                {
+                    "Type": 1,
+                    "TypeName": "LS.Radnim_danom",
+                    "From": "08:00:00",
+                    "Until": "17:00:00"
+                }
+            ],
+            "IsActive": true
+        },
+        {
+            "CountryID": 191,
+            "CenterID": 552,
+            "ShortName": "IN974",
+            "Delivery": true,
+            "Dropoff": false,
+            "GeoLat": 45.23975990,
+            "GeoLong": 13.93730920,
+            "Address": {
+                "Name": "IN974",
+                "ZipCode": "52000",
+                "Place": "PAZIN",
+                "Street": "43. ISTARSKE DIVIZIJE",
+                "HouseNumber": 11,
+                "HouseNumberAddition": "A",
+                "CountryPrefix": "HR",
+                "Language": "HR",
+                "Type": 0
+            },
+            "WorkingHours": [
+                {
+                    "Type": 1,
+                    "TypeName": "LS.Radnim_danom",
+                    "From": "08:00:00",
+                    "Until": "21:00:00"
+                },
+                {
+                    "Type": 2,
+                    "TypeName": "LS.Subotom",
+                    "From": "08:00:00",
+                    "Until": "21:00:00"
+                },
+                {
+                    "Type": 3,
+                    "TypeName": "LS.Nedjeljom",
+                    "From": "08:00:00",
+                    "Until": "16:00:00"
+                }
+            ],
+            "IsActive": true
+        },
+        {
+            "CountryID": 191,
+            "CenterID": 223,
+            "ShortName": "TF035",
+            "Delivery": true,
+            "Dropoff": false,
+            "GeoLat": 44.53436667,
+            "GeoLong": 14.91296667,
+            "Address": {
+                "Name": "BS KOLAN PAG",
+                "ZipCode": "53291",
+                "Place": "NOVALJA (PAG)",
+                "Street": "KOLAN BB",
+                "CountryPrefix": "HR",
+                "Language": "HR",
+                "Type": 0
+            },
+            "WorkingHours": [
+                {
+                    "Type": 1,
+                    "TypeName": "LS.Radnim_danom",
+                    "From": "06:00:00",
+                    "Until": "22:00:00"
+                },
+                {
+                    "Type": 2,
+                    "TypeName": "LS.Subotom",
+                    "From": "06:00:00",
+                    "Until": "22:00:00"
+                },
+                {
+                    "Type": 3,
+                    "TypeName": "LS.Nedjeljom",
+                    "From": "06:00:00",
+                    "Until": "22:00:00"
+                }
+            ],
+            "IsActive": true
+        }
+    ],
+    "status": 0,
+    "validations": []
+}

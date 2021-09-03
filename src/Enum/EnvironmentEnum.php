@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Answear\OverseasBundle\Enum;
 
 use MabeEnum\Enum;
+use MabeEnum\EnumSerializableTrait;
 
-class EnvironmentEnum extends Enum
+class EnvironmentEnum extends Enum implements \Serializable
 {
+    use EnumSerializableTrait;
+
     public const PROD = 'prod';
     public const TEST = 'test';
 

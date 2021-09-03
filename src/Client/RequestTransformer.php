@@ -6,6 +6,7 @@ namespace Answear\OverseasBundle\Client;
 
 use Answear\OverseasBundle\ConfigProvider;
 use Answear\OverseasBundle\Request\RequestInterface;
+use Answear\OverseasBundle\Serializer\Serializer;
 use GuzzleHttp\Psr7\Request as HttpRequest;
 use GuzzleHttp\Psr7\Uri;
 

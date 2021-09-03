@@ -7,7 +7,7 @@ namespace Answear\OverseasBundle\Request;
 class GetParcelShops implements RequestInterface
 {
     private const ENDPOINT = 'parcelshops';
-    private const HTTP_METHOD = 'POST';
+    private const HTTP_METHOD = 'GET';
 
     public function getEndpoint(): string
     {
