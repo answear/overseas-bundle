@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Answear\OverseasBundle\Client;
 
 use Answear\OverseasBundle\Exception\ServiceUnavailableException;
+use Answear\OverseasBundle\Logger\OverseasLogger;
 use Answear\OverseasBundle\Request\RequestInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
@@ -14,25 +15,43 @@ class Client
 {
     private ClientInterface $client;
     private RequestTransformer $transformer;
+    private OverseasLogger $overseasLogger;
 
-    public function __construct(RequestTransformer $transformer, ?ClientInterface $client = null)
-    {
+    public function __construct(
+        RequestTransformer $transformer,
+        OverseasLogger $overseasLogger,
+        ?ClientInterface $client = null
+    ) {
         $this->transformer = $transformer;
+        $this->overseasLogger = $overseasLogger;
         $this->client = $client ?? new \GuzzleHttp\Client();
     }
 
     public function request(RequestInterface $request): ResponseInterface
     {
+        $this->overseasLogger->setRequestId(uniqid('OVERSEAS', true));
         try {
-            $response = $this->client->send($this->transformer->transform($request));
+            $psrRequest = $this->transformer->transform($request);
+            $this->overseasLogger->logRequest($request->getEndpoint(), $psrRequest);
 
-            if ($response->getBody()->isSeekable()) {
-                $response->getBody()->rewind();
+            $psrResponse = $this->client->send($psrRequest);
+            $this->overseasLogger->logResponse($request->getEndpoint(), $psrRequest, $psrResponse);
+
+            if ($psrResponse->getBody()->isSeekable()) {
+                $psrResponse->getBody()->rewind();
             }
         } catch (GuzzleException $e) {
+            $this->overseasLogger->logError($request->getEndpoint(), $e);
+
             throw new ServiceUnavailableException($e->getMessage(), $e->getCode(), $e);
+        } catch (\Throwable $t) {
+            $this->overseasLogger->logError($request->getEndpoint(), $t);
+
+            throw $t;
+        } finally {
+            $this->overseasLogger->clearRequestId();
         }
 
-        return $response;
+        return $psrResponse;
     }
 }

@@ -8,6 +8,7 @@
     "ext-json": "*",
     "guzzlehttp/guzzle": "^6.0 || ^7.0",
     "marc-mabe/php-enum": "^3.0|^4.3",
+    "psr/log": "^1.0",
     "symfony/http-kernel": "^4.4|^5.1.5",
     "symfony/serializer": "^4.4|^5.0",
     "symfony/property-info": "^4.4|^5.0",

@@ -23,7 +23,10 @@ should be added automatically to your `config/bundles.php` file by Symfony Flex.
 answear_overseas:
     environment: test|prod
     apiKey: yourApiKey
+    logger: yourCustomLoggerService #default: null
 ```
+
+Logger service must implement `Psr\Log\LoggerInterface` interface.
 
 ## Usage
 
