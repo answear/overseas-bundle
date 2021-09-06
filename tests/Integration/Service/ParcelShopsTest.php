@@ -9,7 +9,9 @@ use Answear\OverseasBundle\Client\RequestTransformer;
 use Answear\OverseasBundle\ConfigProvider;
 use Answear\OverseasBundle\Enum\EnvironmentEnum;
 use Answear\OverseasBundle\Enum\StatusResult;
+use Answear\OverseasBundle\Exception\BadRequestException;
 use Answear\OverseasBundle\Logger\OverseasLogger;
+use Answear\OverseasBundle\Response\DTO\Error;
 use Answear\OverseasBundle\Response\DTO\ParcelShop;
 use Answear\OverseasBundle\Serializer\Serializer;
 use Answear\OverseasBundle\Service\ParcelShopsService;
@@ -18,6 +20,7 @@ use Answear\OverseasBundle\Tests\Util\FileTestUtil;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 class ParcelShopsTest extends TestCase
 {
@@ -31,7 +34,6 @@ class ParcelShopsTest extends TestCase
         parent::setUp();
 
         $this->serializer = new Serializer();
-        $this->client = $this->getClient();
     }
 
     /**
@@ -39,44 +41,47 @@ class ParcelShopsTest extends TestCase
      */
     public function successfulGetOffices(): void
     {
+        $this->client = $this->getClient();
         $service = $this->getService();
         $this->mockGuzzleResponse(
             new Response(200, [], FileTestUtil::getFileContents(__DIR__ . '/data/parcelShops.json'))
         );
 
-        $response = $service->get();
-
-        self::assertTrue(StatusResult::ok()->is($response->getStatus()));
-        self::assertEmpty($response->getError());
-        self::assertSame([], $response->getValidations());
-        $this->assertOfficeSame($response->getData());
+        $this->assertOfficeSame($service->get());
     }
 
     /**
      * @test
      */
-    public function getOfficesWithError(): void
+    public function badRequestTest(): void
     {
-        //TODO handle response with error
-        $this->markTestIncomplete('TODO handle response with error.');
-        /*
+        $this->client = $this->getClient(false);
         $service = $this->getService();
         $this->mockGuzzleResponse(
             new Response(200, [], FileTestUtil::getFileContents(__DIR__ . '/data/parcelShops-invalid.json'))
         );
 
-        $response = $service->get();
-        */
+        try {
+            $service->get();
+        } catch (BadRequestException $exception) {
+            self::assertSame('Error occurs.', $exception->getMessage());
+            self::assertTrue($exception->getResponse()->getStatus()->is(StatusResult::error()));
+            self::assertInstanceOf(Error::class, $exception->getResponse()->getError());
+
+            return;
+        }
+
+        $this->fail('BadRequestException expected.');
     }
 
-    private function getClient(): Client
+    private function getClient(?bool $withLogger = true): Client
     {
         return new Client(
             new RequestTransformer(
                 $this->serializer,
                 new ConfigProvider(EnvironmentEnum::test(), 'api-key')
             ),
-            new OverseasLogger($this->getLogger()),
+            new OverseasLogger($withLogger ? $this->getLogger() : new NullLogger()),
             $this->setupGuzzleClient()
         );
     }

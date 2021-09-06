@@ -29,7 +29,12 @@ class Serializer
 
     public function decodeResponse(string $class, ResponseInterface $response): object
     {
-        return $this->getSerializer()->deserialize($response->getBody()->getContents(), $class, static::FORMAT);
+        return $this->getSerializer()->deserialize(
+            $response->getBody()->getContents(),
+            $class,
+            static::FORMAT,
+            [Normalizer\AbstractObjectNormalizer::SKIP_NULL_VALUES => true]
+        );
     }
 
     private function getSerializer(): SymfonySerializer
@@ -37,6 +42,7 @@ class Serializer
         if (!isset($this->serializer)) {
             $this->serializer = new SymfonySerializer(
                 [
+                    new Normalizer\CustomNormalizer(),
                     new Normalizer\DateTimeNormalizer(
                         [
                             Normalizer\DateTimeNormalizer::FORMAT_KEY => 'Y-m-d\\TH:i:s.uP',

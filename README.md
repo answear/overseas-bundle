@@ -37,14 +37,13 @@ Logger service must implement `Psr\Log\LoggerInterface` interface.
 $parcelShopService->get();
 ```
 
-will return `\Answear\OverseasBundle\Response\ParcelShopsResult` object.
+will return `\Answear\OverseasBundle\Response\DTO\ParcelShop[]` array.
 
 ### Error handling
 
 - `Answear\OverseasBundle\Exception\ServiceUnavailableException` for all `GuzzleException`
 - `MalformedResponseException` for partner other errors
-- `Answear\OverseasBundle\Exception\BadRequestException` if validation failed
-- TODO
+- `Answear\OverseasBundle\Exception\BadRequestException` if validation failed or for error response
 
 Final notes
 ------------
