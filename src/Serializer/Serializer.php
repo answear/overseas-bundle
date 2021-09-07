@@ -32,8 +32,7 @@ class Serializer
         return $this->getSerializer()->deserialize(
             $response->getBody()->getContents(),
             $class,
-            static::FORMAT,
-            [Normalizer\AbstractObjectNormalizer::SKIP_NULL_VALUES => true]
+            static::FORMAT
         );
     }
 

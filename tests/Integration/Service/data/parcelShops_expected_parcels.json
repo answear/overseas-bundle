@@ -4,8 +4,10 @@
         "countryId": 191,
         "delivery": true,
         "dropoff": false,
-        "geoLat": 45.9758587,
-        "geoLong": 17.1708771,
+        "coordinates": {
+            "latitude": 45.9758587,
+            "longitude": 17.1708771
+        },
         "remark": "",
         "shortName": "CR3403",
         "address": {
@@ -18,8 +20,7 @@
             "fax": null,
             "houseNumber": null,
             "houseNumberAddition": "",
-            "lat": null,
-            "long": null,
+            "coordinates": null,
             "place": "KLO\u0160TAR PODRAVSKI",
             "street": "UL. KRALJA TOMISLAVA 83",
             "zipcode": "48362"
@@ -51,8 +52,10 @@
         "countryId": 191,
         "delivery": true,
         "dropoff": false,
-        "geoLat": 45.8143116,
-        "geoLong": 15.9772183,
+        "coordinates": {
+            "latitude": 45.8143116,
+            "longitude": 15.9772183
+        },
         "remark": "",
         "shortName": "IN702",
         "address": {
@@ -65,8 +68,7 @@
             "fax": null,
             "houseNumber": null,
             "houseNumberAddition": "",
-            "lat": null,
-            "long": null,
+            "coordinates": null,
             "place": "ZAGREB",
             "street": "TR\u017dNICA DOLAC HALA 3",
             "zipcode": "10000"
@@ -116,8 +118,10 @@
         "countryId": 191,
         "delivery": true,
         "dropoff": true,
-        "geoLat": 45.7536676,
-        "geoLong": 15.8956096,
+        "coordinates": {
+            "latitude": 45.7536676,
+            "longitude": 15.8956096
+        },
         "remark": "ISPORUKE I PREUZIMANJA U POSLOVNICI, neaktivno",
         "shortName": "OEXZG",
         "address": {
@@ -130,8 +134,7 @@
             "fax": null,
             "houseNumber": 38,
             "houseNumberAddition": "A",
-            "lat": null,
-            "long": null,
+            "coordinates": null,
             "place": "HRVATSKI LESKOVAC",
             "street": "ZASTAVNICE",
             "zipcode": "10251"
@@ -151,8 +154,10 @@
         "countryId": 191,
         "delivery": true,
         "dropoff": true,
-        "geoLat": 45.891709,
-        "geoLong": 16.838635,
+        "coordinates": {
+            "latitude": 45.891709,
+            "longitude": 16.838635
+        },
         "remark": "",
         "shortName": "OEXBJ",
         "address": {
@@ -165,8 +170,7 @@
             "fax": null,
             "houseNumber": null,
             "houseNumberAddition": "",
-            "lat": null,
-            "long": null,
+            "coordinates": null,
             "place": "BJELOVAR",
             "street": "BJELOVAR",
             "zipcode": "43000"
@@ -186,8 +190,10 @@
         "countryId": 191,
         "delivery": true,
         "dropoff": false,
-        "geoLat": 45.2397599,
-        "geoLong": 13.9373092,
+        "coordinates": {
+            "latitude": 45.2397599,
+            "longitude": 13.9373092
+        },
         "remark": "",
         "shortName": "IN974",
         "address": {
@@ -200,8 +206,7 @@
             "fax": null,
             "houseNumber": 11,
             "houseNumberAddition": "A",
-            "lat": null,
-            "long": null,
+            "coordinates": null,
             "place": "PAZIN",
             "street": "43. ISTARSKE DIVIZIJE",
             "zipcode": "52000"
@@ -233,8 +238,10 @@
         "countryId": 191,
         "delivery": true,
         "dropoff": false,
-        "geoLat": 44.53436667,
-        "geoLong": 14.91296667,
+        "coordinates": {
+            "latitude": 44.53436667,
+            "longitude": 14.91296667
+        },
         "remark": "",
         "shortName": "TF035",
         "address": {
@@ -247,8 +254,7 @@
             "fax": null,
             "houseNumber": null,
             "houseNumberAddition": "",
-            "lat": null,
-            "long": null,
+            "coordinates": null,
             "place": "NOVALJA (PAG)",
             "street": "KOLAN BB",
             "zipcode": "53291"

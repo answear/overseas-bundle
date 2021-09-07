@@ -16,26 +16,13 @@ class ParcelShopsResponse implements ResponseInterface, DenormalizableInterface
     /**
      * @var ParcelShop[]
      */
-    private array $data = [];
-    private StatusResult $status;
-    private ?Error $error = null;
+    public array $data = [];
+    public StatusResult $status;
+    public ?Error $error = null;
     /**
      * @var Validation[]
      */
-    private array $validations = [];
-
-    /**
-     * @return ParcelShop[]|null
-     */
-    public function getData(): ?array
-    {
-        return $this->data;
-    }
-
-    public function addData(ParcelShop $parcelShop): void
-    {
-        $this->data[] = $parcelShop;
-    }
+    public array $validations = [];
 
     public function getStatus(): StatusResult
     {

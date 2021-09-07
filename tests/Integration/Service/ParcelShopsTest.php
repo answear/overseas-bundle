@@ -98,46 +98,47 @@ class ParcelShopsTest extends TestCase
     {
         $actualData = [];
         foreach ($parcelShops as $parcelShop) {
-            $address = $parcelShop->getAddress();
-            $workingHours = $parcelShop->getWorkingHours();
+            $address = $parcelShop->address;
+            $workingHours = $parcelShop->workingHours;
 
             $actualWorkingHours = [];
             foreach ($workingHours as $workingHour) {
                 $actualWorkingHours[] = [
-                    'type' => $workingHour->getType()->getValue(),
-                    'typeName' => $workingHour->getTypeName(),
-                    'from' => $workingHour->getFrom(),
-                    'until' => $workingHour->getUntil(),
+                    'type' => $workingHour->type->getValue(),
+                    'typeName' => $workingHour->typeName,
+                    'from' => $workingHour->from,
+                    'until' => $workingHour->until,
                 ];
             }
 
             $actualData[] = [
-                'centerId' => $parcelShop->getCenterId(),
-                'countryId' => $parcelShop->getCountryId(),
-                'delivery' => $parcelShop->getDelivery(),
-                'dropoff' => $parcelShop->getDropoff(),
-                'geoLat' => $parcelShop->getGeoLat(),
-                'geoLong' => $parcelShop->getGeoLong(),
-                'remark' => $parcelShop->getRemark(),
-                'shortName' => $parcelShop->getShortName(),
+                'centerId' => $parcelShop->centerId,
+                'countryId' => $parcelShop->countryId,
+                'delivery' => $parcelShop->delivery,
+                'dropoff' => $parcelShop->dropoff,
+                'coordinates' => [
+                    'latitude' => $parcelShop->getCoordinates()->latitude,
+                    'longitude' => $parcelShop->getCoordinates()->longitude,
+                ],
+                'remark' => $parcelShop->remark,
+                'shortName' => $parcelShop->shortName,
                 'address' => [
-                    'name' => $address->getName(),
-                    'addressId' => $address->getAddressId(),
-                    'countryPrefix' => $address->getCountryPrefix(),
-                    'email' => $address->getEmail(),
-                    'phone' => $address->getPhone(),
-                    'textPhone' => $address->getTextPhone(),
-                    'fax' => $address->getFax(),
-                    'houseNumber' => $address->getHouseNumber(),
-                    'houseNumberAddition' => $address->getHouseNumberAddition(),
-                    'lat' => $address->getLat(),
-                    'long' => $address->getLong(),
-                    'place' => $address->getPlace(),
-                    'street' => $address->getStreet(),
-                    'zipcode' => $address->getZipCode(),
+                    'name' => $address->name,
+                    'addressId' => $address->addressId,
+                    'countryPrefix' => $address->countryPrefix,
+                    'email' => $address->email,
+                    'phone' => $address->phone,
+                    'textPhone' => $address->textPhone,
+                    'fax' => $address->fax,
+                    'houseNumber' => $address->houseNumber,
+                    'houseNumberAddition' => $address->houseNumberAddition,
+                    'coordinates' => null,
+                    'place' => $address->place,
+                    'street' => $address->street,
+                    'zipcode' => $address->zipCode,
                 ],
                 'workingHours' => $actualWorkingHours,
-                'isActive' => $parcelShop->isActive(),
+                'isActive' => $parcelShop->isActive,
             ];
         }
 
