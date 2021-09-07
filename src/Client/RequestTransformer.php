@@ -26,11 +26,14 @@ class RequestTransformer
     {
         return new HttpRequest(
             $request->getMethod(),
-            new Uri($this->configuration->getUrl() . $request->getEndpoint()),
+            new Uri(
+                $this->configuration->getUrl() . $request->getEndpoint()
+                . '?apiKey=' . $this->configuration->getApiKey()
+            ),
             [
                 'Content-type' => 'application/json',
             ],
-            $this->serializer->serialize($request)
+            'GET' === $request->getMethod() ? null : $this->serializer->serialize($request)
         );
     }
 }
