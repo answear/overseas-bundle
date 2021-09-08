@@ -10,6 +10,7 @@ use Answear\OverseasBundle\DependencyInjection\Configuration;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 class ConfigurationTest extends TestCase
 {
@@ -115,6 +116,17 @@ class ConfigurationTest extends TestCase
             new \InvalidArgumentException(
                 'Provide valid apiKey config.'
             ),
+        ];
+
+        yield [
+            [
+                [
+                    'environment' => 'prod',
+                    'apiKey' => 'api-key',
+                    'logger' => 'not-existed-service-name',
+                ],
+            ],
+            new ServiceNotFoundException('not-existed-service-name'),
         ];
     }
 

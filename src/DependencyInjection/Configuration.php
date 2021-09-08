@@ -17,6 +17,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('environment')->isRequired()->defaultValue(null)->end()
                 ->scalarNode('apiKey')->isRequired()->defaultValue(null)->end()
+                ->scalarNode('logger')->defaultValue(null)->end()
             ->end();
 
         return $treeBuilder;

@@ -9,3 +9,6 @@ services:
 
     Answear\OverseasBundle\ConfigProvider: ~
 
+    Answear\OverseasBundle\Logger\OverseasLogger:
+        shared: false
+

@@ -9,6 +9,7 @@ use Answear\OverseasBundle\Client\RequestTransformer;
 use Answear\OverseasBundle\ConfigProvider;
 use Answear\OverseasBundle\Enum\EnvironmentEnum;
 use Answear\OverseasBundle\Enum\StatusResult;
+use Answear\OverseasBundle\Logger\OverseasLogger;
 use Answear\OverseasBundle\Response\DTO\ParcelShop;
 use Answear\OverseasBundle\Serializer\Serializer;
 use Answear\OverseasBundle\Service\ParcelShopsService;
@@ -16,6 +17,7 @@ use Answear\OverseasBundle\Tests\MockGuzzleTrait;
 use Answear\OverseasBundle\Tests\Util\FileTestUtil;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 
 class ParcelShopsTest extends TestCase
 {
@@ -72,8 +74,9 @@ class ParcelShopsTest extends TestCase
         return new Client(
             new RequestTransformer(
                 $this->serializer,
-                new ConfigProvider(EnvironmentEnum::test(), '')
+                new ConfigProvider(EnvironmentEnum::test(), 'api-key')
             ),
+            new OverseasLogger($this->getLogger()),
             $this->setupGuzzleClient()
         );
     }
@@ -137,5 +140,59 @@ class ParcelShopsTest extends TestCase
             FileTestUtil::decodeJsonFromFile(__DIR__ . '/data/parcelShops_expected_parcels.json'),
             $actualData
         );
+    }
+
+    private function getLogger(): LoggerInterface
+    {
+        $expected = [
+            '[OVERSEAS] Request - parcelshops' => [
+                'endpoint' => 'parcelshops',
+                'uri' => [
+                    'path' => '/parcelshops',
+                    'query' => [
+                        'apiKey' => 'api-key',
+                    ],
+                ],
+                'body' => null,
+            ],
+            '[OVERSEAS] Response - parcelshops' => [
+                'endpoint' => 'parcelshops',
+                'uri' => [
+                    'path' => '/parcelshops',
+                    'query' => [
+                        'apiKey' => 'api-key',
+                    ],
+                ],
+                'response' => '--- HUGE CONTENT SKIPPED ---',
+            ],
+        ];
+        $actualMessage = null;
+
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger->expects(self::exactly(2))
+            ->method('info')
+            ->with(
+                $this->callback(
+                    static function (string $message) use ($expected, &$actualMessage) {
+                        self::assertIsArray($expected[$message] ?? null);
+                        $actualMessage = $message;
+
+                        return true;
+                    }
+                ),
+                $this->callback(
+                    static function (array $context = []) use ($expected, &$actualMessage) {
+                        self::assertIsString($context['overseasRequestId']);
+                        unset($context['overseasRequestId']);
+
+                        self::assertEquals($expected[$actualMessage] ?? [], $context);
+                        self::assertSame($expected[$actualMessage] ?? [], $context);
+
+                        return true;
+                    }
+                )
+            );
+
+        return $logger;
     }
 }

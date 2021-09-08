@@ -9,7 +9,7 @@ use Answear\OverseasBundle\Enum\EnvironmentEnum;
 class ConfigProvider
 {
     private const URL = 'https://api.overseas.hr/';
-    private const TEST_URL = 'https://apitest.overseas.hr';
+    private const TEST_URL = 'https://apitest.overseas.hr/';
 
     private EnvironmentEnum $environment;
     private string $apiKey;
