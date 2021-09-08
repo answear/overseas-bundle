@@ -79,7 +79,7 @@ class ParcelShopsTest extends TestCase
         return new Client(
             new RequestTransformer(
                 $this->serializer,
-                new ConfigProvider(EnvironmentEnum::test(), 'api-key')
+                new ConfigProvider(EnvironmentEnum::TEST, 'api-key')
             ),
             new OverseasLogger($withLogger ? $this->getLogger() : new NullLogger()),
             $this->setupGuzzleClient()

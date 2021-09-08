@@ -14,9 +14,9 @@ class ConfigProvider
     private EnvironmentEnum $environment;
     private string $apiKey;
 
-    public function __construct(EnvironmentEnum $environment, string $apiKey)
+    public function __construct(string $environment, string $apiKey)
     {
-        $this->environment = $environment;
+        $this->environment = EnvironmentEnum::get($environment);
         $this->apiKey = $apiKey;
     }
 
