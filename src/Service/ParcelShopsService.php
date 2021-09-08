@@ -9,7 +9,8 @@ use Answear\OverseasBundle\Enum\StatusResult;
 use Answear\OverseasBundle\Exception\BadRequestException;
 use Answear\OverseasBundle\Exception\ServiceUnavailableException;
 use Answear\OverseasBundle\Request\GetParcelShops;
-use Answear\OverseasBundle\Response\ParcelShopsResult;
+use Answear\OverseasBundle\Response\DTO\ParcelShop;
+use Answear\OverseasBundle\Response\ParcelShopsResponse;
 use Answear\OverseasBundle\Serializer\Serializer;
 
 class ParcelShopsService
@@ -24,20 +25,22 @@ class ParcelShopsService
     }
 
     /**
-     * @throws BadRequestException
+     * @return ParcelShop[]
+     *
      * @throws ServiceUnavailableException
+     * @throws BadRequestException
      */
-    public function get(): ParcelShopsResult
+    public function get(): array
     {
         $response = $this->client->request(new GetParcelShops());
 
-        /** @var ParcelShopsResult $parcelShopsResult */
-        $parcelShopsResult = $this->serializer->decodeResponse(ParcelShopsResult::class, $response);
+        /** @var ParcelShopsResponse $parcelShopsResult */
+        $parcelShopsResult = $this->serializer->decodeResponse(ParcelShopsResponse::class, $response);
 
         if (!$parcelShopsResult->getStatus()->is(StatusResult::ok())) {
-            throw new BadRequestException('Invalid request.', $parcelShopsResult);
+            throw new BadRequestException($parcelShopsResult);
         }
 
-        return $parcelShopsResult;
+        return $parcelShopsResult->getData();
     }
 }
