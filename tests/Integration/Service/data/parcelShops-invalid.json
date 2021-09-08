@@ -1,0 +1,18 @@
+{
+    "data": null,
+    "TraceID": null,
+    "status": 1,
+    "error": {
+        "Code": 7000,
+        "Validations": null,
+        "Context": null,
+        "StackTrace": "   at MortyCore.Controller.GetParcelShopsController.processRequest() in C:\\Projects\\Overseas_ClientAPI\\Projects\\MortyExtensions\\MortyControllers\\Components\\API\\ParcelShop\\GetParcelShopsController.vb:line 71",
+        "Message": "API key authentication failed, check your key!",
+        "Data": {},
+        "InnerException": null,
+        "HelpLink": null,
+        "Source": "MortyExtensions",
+        "HResult": -2146232832
+    },
+    "validations": []
+}

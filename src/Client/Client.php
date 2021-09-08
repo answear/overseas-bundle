@@ -4,33 +4,27 @@ declare(strict_types=1);
 
 namespace Answear\OverseasBundle\Client;
 
-use Answear\OverseasBundle\ConfigProvider;
 use Answear\OverseasBundle\Exception\ServiceUnavailableException;
-use GuzzleHttp\Client as GuzzleClient;
+use Answear\OverseasBundle\Request\RequestInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
     private ClientInterface $client;
+    private RequestTransformer $transformer;
 
-    public function __construct(
-        ConfigProvider $configuration,
-        ?ClientInterface $client = null
-    ) {
-        $this->client = $client ?? new GuzzleClient(
-            [
-                'base_uri' => $configuration->getUrl(),
-            ]
-        );
+    public function __construct(RequestTransformer $transformer, ?ClientInterface $client = null)
+    {
+        $this->transformer = $transformer;
+        $this->client = $client ?? new \GuzzleHttp\Client();
     }
 
-    public function request(Request $request): ResponseInterface
+    public function request(RequestInterface $request): ResponseInterface
     {
         try {
-            $response = $this->client->send($request);
+            $response = $this->client->send($this->transformer->transform($request));
 
             if ($response->getBody()->isSeekable()) {
                 $response->getBody()->rewind();
