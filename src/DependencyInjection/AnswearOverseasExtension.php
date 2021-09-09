@@ -25,9 +25,8 @@ class AnswearOverseasExtension extends Extension
 
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
-        $this->validateConfig($config);
 
-        $this->setConfigProvider($container, EnvironmentEnum::get($config['environment']), $config['apiKey']);
+        $this->setConfigProvider($container, EnvironmentEnum::get($config['environment']), (string) $config['apiKey']);
         $this->setLogger($container, $config['logger'] ?? null);
     }
 
@@ -47,17 +46,5 @@ class AnswearOverseasExtension extends Extension
                     : new NullLogger(),
             ]
         );
-    }
-
-    private function validateConfig(array $config): void
-    {
-        //check if enum exists
-        EnvironmentEnum::get($config['environment']);
-
-        if (empty($config['apiKey']) || !is_string($config['apiKey'])) {
-            throw new \InvalidArgumentException(
-                'Provide valid apiKey config.'
-            );
-        }
     }
 }

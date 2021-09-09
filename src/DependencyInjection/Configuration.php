@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Answear\OverseasBundle\DependencyInjection;
 
+use Answear\OverseasBundle\Enum\EnvironmentEnum;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -15,8 +16,11 @@ class Configuration implements ConfigurationInterface
 
         $treeBuilder->getRootNode()
             ->children()
-                ->scalarNode('environment')->isRequired()->defaultValue(null)->end()
-                ->scalarNode('apiKey')->isRequired()->defaultValue(null)->end()
+                ->enumNode('environment')
+                    ->values(EnvironmentEnum::getValues())
+                ->isRequired()
+                ->end()
+                ->scalarNode('apiKey')->isRequired()->end()
                 ->scalarNode('logger')->defaultValue(null)->end()
             ->end();
 

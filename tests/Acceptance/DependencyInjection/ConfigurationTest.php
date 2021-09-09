@@ -32,7 +32,7 @@ class ConfigurationTest extends TestCase
         $configProviderDefinition = $builder->getDefinition(ConfigProvider::class);
 
         self::assertSame($configs[0]['environment'], $configProviderDefinition->getArgument(0)->getValue());
-        self::assertSame($configs[0]['apiKey'], $configProviderDefinition->getArgument(1));
+        self::assertSame((string) $configs[0]['apiKey'], $configProviderDefinition->getArgument(1));
     }
 
     /**
@@ -90,10 +90,7 @@ class ConfigurationTest extends TestCase
             ],
             'answear_overseas" must be configured.',
         ];
-    }
 
-    public function provideMoreInvalidConfig(): iterable
-    {
         yield [
             [
                 [
@@ -101,32 +98,21 @@ class ConfigurationTest extends TestCase
                     'apiKey' => 'apiKeyString',
                 ],
             ],
-            new \InvalidArgumentException(
-                "Unknown value 'wrong-env' for enumeration Answear\OverseasBundle\Enum\EnvironmentEnum"
-            ),
+            'The value "wrong-env" is not allowed for path "answear_overseas.environment". Permissible values: "prod", "test"',
         ];
+    }
 
-        yield [
-            [
-                [
-                    'environment' => 'prod',
-                    'apiKey' => 8756299,
-                ],
-            ],
-            new \InvalidArgumentException(
-                'Provide valid apiKey config.'
-            ),
-        ];
-
+    public function provideMoreInvalidConfig(): iterable
+    {
         yield [
             [
                 [
                     'environment' => 'prod',
                     'apiKey' => 'api-key',
-                    'logger' => 'not-existed-service-name',
+                    'logger' => 'not-existing-service-name',
                 ],
             ],
-            new ServiceNotFoundException('not-existed-service-name'),
+            new ServiceNotFoundException('not-existing-service-name'),
         ];
     }
 
@@ -146,6 +132,15 @@ class ConfigurationTest extends TestCase
                 [
                     'environment' => 'prod',
                     'apiKey' => 'apiKeyString',
+                ],
+            ],
+        ];
+
+        yield [
+            [
+                [
+                    'environment' => 'prod',
+                    'apiKey' => 8756299,
                 ],
             ],
         ];

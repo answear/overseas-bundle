@@ -8,28 +8,13 @@ use Answear\OverseasBundle\Enum\DayType;
 
 class WorkingHours
 {
-    private ?DayType $type;
-    private string $typeName;
-    private ?string $from;
-    private ?string $until;
+    public ?DayType $type;
+    public string $typeName;
+    public ?string $from;
+    public ?string $until;
 
-    public function getType(): ?DayType
+    public function setType(?DayType $type): void
     {
-        return $this->type;
-    }
-
-    public function getTypeName(): string
-    {
-        return $this->typeName;
-    }
-
-    public function getFrom(): ?string
-    {
-        return $this->from;
-    }
-
-    public function getUntil(): ?string
-    {
-        return $this->until;
+        $this->type = $type;
     }
 }

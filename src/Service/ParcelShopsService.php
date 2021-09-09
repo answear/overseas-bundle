@@ -41,6 +41,6 @@ class ParcelShopsService
             throw new BadRequestException($parcelShopsResult);
         }
 
-        return $parcelShopsResult->getData();
+        return $parcelShopsResult->data;
     }
 }

@@ -12,18 +12,8 @@ class Error implements DenormalizableInterface
     /**
      * @var Validation[]
      */
-    private array $validations = [];
-    private int $code;
-
-    public function getValidations(): array
-    {
-        return $this->validations;
-    }
-
-    public function getCode(): int
-    {
-        return $this->code;
-    }
+    public array $validations = [];
+    public int $code;
 
     public function denormalize(DenormalizerInterface $denormalizer, $data, $format = null, array $context = [])
     {

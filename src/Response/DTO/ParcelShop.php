@@ -6,81 +6,35 @@ namespace Answear\OverseasBundle\Response\DTO;
 
 class ParcelShop
 {
-    private int $countryId;
-    private int $centerId;
-    private string $shortName;
-    private string $remark = '';
-    private ?bool $delivery;
-    private ?bool $dropoff;
-    private ?float $geoLat;
-    private ?float $geoLong;
-    private Address $address;
+    public int $countryId;
+    public int $centerId;
+    public string $shortName;
+    public string $remark = '';
+    public ?bool $delivery;
+    public ?bool $dropoff;
+    public Address $address;
     /**
      * @var WorkingHours[]
      */
-    private array $workingHours = [];
-    private bool $isActive = true;
-
-    public function getCountryId(): int
-    {
-        return $this->countryId;
-    }
-
-    public function getCenterId(): int
-    {
-        return $this->centerId;
-    }
-
-    public function getShortName(): string
-    {
-        return $this->shortName;
-    }
-
-    public function getRemark(): string
-    {
-        return $this->remark;
-    }
-
-    public function getDelivery(): ?bool
-    {
-        return $this->delivery;
-    }
-
-    public function getDropoff(): ?bool
-    {
-        return $this->dropoff;
-    }
-
-    public function getGeoLat(): ?float
-    {
-        return $this->geoLat;
-    }
-
-    public function getGeoLong(): ?float
-    {
-        return $this->geoLong;
-    }
-
-    public function getAddress(): Address
-    {
-        return $this->address;
-    }
-
-    /**
-     * @return WorkingHours[]
-     */
-    public function getWorkingHours(): array
-    {
-        return $this->workingHours;
-    }
+    public array $workingHours = [];
+    public bool $isActive = true;
+    private ?float $geoLat;
+    private ?float $geoLong;
 
     public function addWorkingHours(WorkingHours $workingHours): void
     {
         $this->workingHours[] = $workingHours;
     }
 
-    public function isActive(): bool
+    public function getCoordinates(): ?Coordinates
     {
-        return $this->isActive;
+        return null !== $this->geoLat && null !== $this->geoLong
+            ? new Coordinates($this->geoLat, $this->geoLong)
+            : null;
+    }
+
+    public function setAddress(Address $address): void
+    {
+        $this->address = $address;
     }
 }
