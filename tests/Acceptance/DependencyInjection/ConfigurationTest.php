@@ -31,7 +31,7 @@ class ConfigurationTest extends TestCase
 
         $configProviderDefinition = $builder->getDefinition(ConfigProvider::class);
 
-        self::assertSame($configs[0]['environment'], $configProviderDefinition->getArgument(0)->getValue());
+        self::assertSame($configs[0]['environment'], $configProviderDefinition->getArgument(0));
         self::assertSame((string) $configs[0]['apiKey'], $configProviderDefinition->getArgument(1));
     }
 

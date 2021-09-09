@@ -5,7 +5,7 @@ services:
         public: false
 
     Answear\OverseasBundle\:
-        resource: '../../../src/{Client, Service}'
+        resource: '../../../src/{Client,Service,Serializer}'
 
     Answear\OverseasBundle\ConfigProvider: ~
 
