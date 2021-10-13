@@ -33,6 +33,35 @@ class ParcelShop
             : null;
     }
 
+    /**
+     * @return WorkingHours[]
+     */
+    public function getSortedWorkingHours(): array
+    {
+        $copy = $this->workingHours;
+        usort(
+            $copy,
+            static function (WorkingHours $a, WorkingHours $b): int {
+                if (null === $a->type && null === $b->type) {
+                    return 0;
+                }
+                if (null === $a->type) {
+                    return -1;
+                }
+                if (null === $b->type) {
+                    return 1;
+                }
+                if ($a->type->is($b->type)) {
+                    return $a->from <=> $b->from;
+                }
+
+                return $a->type->getOrdinal() <=> $b->type->getOrdinal();
+            }
+        );
+
+        return $copy;
+    }
+
     public function setAddress(Address $address): void
     {
         $this->address = $address;
