@@ -8,7 +8,7 @@ use Answear\OverseasBundle\Enum\DayType;
 
 class WorkingHours
 {
-    public ?DayType $type;
+    public ?DayType $type = null;
     public string $typeName;
     public ?string $from;
     public ?string $until;
