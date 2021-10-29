@@ -9,4 +9,6 @@ interface RequestInterface
     public function getEndpoint(): string;
 
     public function getMethod(): string;
+
+    public function getUrlQuery(): ?string;
 }

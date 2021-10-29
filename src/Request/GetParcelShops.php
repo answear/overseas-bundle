@@ -18,4 +18,9 @@ class GetParcelShops implements RequestInterface
     {
         return self::HTTP_METHOD;
     }
+
+    public function getUrlQuery(): ?string
+    {
+        return null;
+    }
 }

@@ -32,12 +32,35 @@ Logger service must implement `Psr\Log\LoggerInterface` interface.
 
 ### Get ParcelShops
 
+@see https://api.overseas.hr/apiinfo#parcelshops
+
 ```php
 /** @var \Answear\OverseasBundle\Service\ParcelShopsService $parcelShopService **/
 $parcelShopService->get();
 ```
 
 will return `\Answear\OverseasBundle\Response\DTO\ParcelShop[]` array.
+
+### Get Places
+
+@see https://api.overseas.hr/apiinfo#places
+
+```php
+$zipCode = 12345;
+$name = 'name';
+$approx = true;
+
+/** @var \Answear\OverseasBundle\Service\PlacesService $placesService **/
+$placesService->get($zipCode, $name, $approx);
+```
+
+will return `\Answear\OverseasBundle\Response\DTO\Place[]` array narrowed down to params. or simply
+
+```php
+$placesService->get();
+```
+
+to get all places.
 
 ### Error handling
 

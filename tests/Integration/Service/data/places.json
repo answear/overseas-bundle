@@ -1,0 +1,118 @@
+{
+    "data": [
+        {
+            "ZipCode": "44401",
+            "Name": "ŠIBINE",
+            "ZipcodeName": "HAJTIĆ",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "44402",
+            "Name": "VELIKI OBLJAJ",
+            "ZipcodeName": "MALI OBLJAJ",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "42253",
+            "Name": "PURGA BEDNJANSKA",
+            "ZipcodeName": "BEDNJA",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "47273",
+            "Name": "SREDNJE PRILIŠĆE",
+            "ZipcodeName": "SREDNJE PRILIŠĆE",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "21224",
+            "Name": "SLATINE",
+            "ZipcodeName": "SLATINE",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "34322",
+            "Name": "NURKOVAC",
+            "ZipcodeName": "BRESTOVAC",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "20230",
+            "Name": "BROCE (PELJEŠAC)",
+            "ZipcodeName": "STON (PELJEŠAC)",
+            "StandardAvailable": true,
+            "CargoAvailable": false
+        },
+        {
+            "ZipCode": "23263",
+            "Name": "BANJ (PAŠMAN)",
+            "ZipcodeName": "ŽDRELAC (PAŠMAN)",
+            "StandardAvailable": true,
+            "CargoAvailable": false
+        },
+        {
+            "ZipCode": "52402",
+            "Name": "BORUT",
+            "ZipcodeName": "CEROVLJE",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "21400",
+            "Name": "SUPETAR (BRAČ)",
+            "ZipcodeName": "SUPETAR (BRAČ)",
+            "StandardAvailable": true,
+            "CargoAvailable": false
+        },
+        {
+            "ZipCode": "21400",
+            "Name": "MIRCA (BRAČ)",
+            "ZipcodeName": "SUPETAR (BRAČ)",
+            "StandardAvailable": true,
+            "CargoAvailable": false
+        },
+        {
+            "ZipCode": "21403",
+            "Name": "SUTIVAN (BRAČ)",
+            "ZipcodeName": "SUTIVAN (BRAČ)",
+            "StandardAvailable": true,
+            "CargoAvailable": false
+        },
+        {
+            "ZipCode": "51302",
+            "Name": "POŽAR",
+            "ZipcodeName": "KUŽELJ",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "51302",
+            "Name": "SEDALCE",
+            "ZipcodeName": "KUŽELJ",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "21256",
+            "Name": "CISTA PROVO",
+            "ZipcodeName": "CISTA PROVO",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        },
+        {
+            "ZipCode": "42243",
+            "Name": "KORENJAK",
+            "ZipcodeName": "MARUŠEVEC",
+            "StandardAvailable": true,
+            "CargoAvailable": true
+        }
+    ],
+    "status": 0,
+    "validations": []
+}
