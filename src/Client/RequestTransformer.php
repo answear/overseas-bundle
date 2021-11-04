@@ -25,12 +25,16 @@ class RequestTransformer
 
     public function transform(RequestInterface $request): HttpRequest
     {
+        $uri = $this->configuration->getUrl() . $request->getEndpoint()
+            . '?apiKey=' . $this->configuration->getApiKey();
+
+        if (null !== $request->getUrlQuery()) {
+            $uri .= '&' . $request->getUrlQuery();
+        }
+
         return new HttpRequest(
             $request->getMethod(),
-            new Uri(
-                $this->configuration->getUrl() . $request->getEndpoint()
-                . '?apiKey=' . $this->configuration->getApiKey()
-            ),
+            new Uri($uri),
             [
                 'Content-type' => 'application/json',
             ],

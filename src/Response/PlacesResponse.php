@@ -6,17 +6,17 @@ namespace Answear\OverseasBundle\Response;
 
 use Answear\OverseasBundle\Enum\StatusResult;
 use Answear\OverseasBundle\Response\DTO\Error;
-use Answear\OverseasBundle\Response\DTO\ParcelShop;
+use Answear\OverseasBundle\Response\DTO\Place;
 use Answear\OverseasBundle\Response\DTO\Validation;
 use Symfony\Component\Serializer\Normalizer\DenormalizableInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
-class ParcelShopsResponse implements ResponseInterface, DenormalizableInterface
+class PlacesResponse implements ResponseInterface, DenormalizableInterface
 {
     use ResponsePartialDenormalizeTrait;
 
     /**
-     * @var ParcelShop[]
+     * @var Place[]
      */
     public array $data = [];
     public StatusResult $status;
@@ -54,7 +54,7 @@ class ParcelShopsResponse implements ResponseInterface, DenormalizableInterface
             ? []
             : $denormalizer->denormalize(
                 $data['data'],
-                ParcelShop::class . '[]',
+                Place::class . '[]',
                 $format,
                 $context
             );

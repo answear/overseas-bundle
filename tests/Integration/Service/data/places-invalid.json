@@ -1,0 +1,19 @@
+{
+    "data": null,
+    "TraceID": null,
+    "status": 1,
+    "error": {
+        "Code": 7000,
+        "Validations": null,
+        "Severity": 4,
+        "Context": null,
+        "StackTrace": "   at MortyCore.Controller.GetPlacesController.processRequest() in C:\\Projects\\Overseas_ClientAPI\\Projects\\MortyExtensions\\MortyControllers\\Components\\API\\ClientAPI\\GetPlacesController.vb:line 93",
+        "Message": "API key authentication failed, check your key!",
+        "Data": {},
+        "InnerException": null,
+        "HelpLink": null,
+        "Source": "MortyExtensions",
+        "HResult": -2146232832
+    },
+    "validations": []
+}
