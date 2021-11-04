@@ -22,7 +22,7 @@ class ConfigProvider
 
     public function getUrl(): string
     {
-        return EnvironmentEnum::prod()->is($this->environment) ? static::URL : static::TEST_URL;
+        return EnvironmentEnum::prod()->is($this->environment) ? self::URL : self::TEST_URL;
     }
 
     public function getEnvironment(): EnvironmentEnum

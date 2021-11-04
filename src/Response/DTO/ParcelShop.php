@@ -66,4 +66,14 @@ class ParcelShop
     {
         $this->address = $address;
     }
+
+    public function setGeoLat(?float $geoLat): void
+    {
+        $this->geoLat = $geoLat;
+    }
+
+    public function setGeoLong(?float $geoLong): void
+    {
+        $this->geoLong = $geoLong;
+    }
 }

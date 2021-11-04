@@ -22,7 +22,7 @@ class Serializer
     {
         return $this->getSerializer()->serialize(
             $request,
-            static::FORMAT,
+            self::FORMAT,
             [Normalizer\AbstractObjectNormalizer::SKIP_NULL_VALUES => true]
         );
     }
@@ -32,7 +32,7 @@ class Serializer
         return $this->getSerializer()->deserialize(
             $response->getBody()->getContents(),
             $class,
-            static::FORMAT
+            self::FORMAT
         );
     }
 
