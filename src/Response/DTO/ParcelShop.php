@@ -10,6 +10,7 @@ class ParcelShop
     public int $centerId;
     public string $shortName;
     public string $remark = '';
+    public ?string $partner = null;
     public ?bool $delivery;
     public ?bool $dropoff;
     public Address $address;

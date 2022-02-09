@@ -8,6 +8,7 @@
             "Dropoff": false,
             "GeoLat": 45.97585870,
             "GeoLong": 17.17087710,
+            "Partner": "BOSO",
             "Address": {
                 "Name": "BS KLOŠTAR PODRAVSKI",
                 "ZipCode": "48362",
@@ -106,6 +107,7 @@
             "Dropoff": true,
             "GeoLat": 45.75366760,
             "GeoLong": 15.89560960,
+            "Partner": "iNOVINE",
             "Address": {
                 "Name": "POSLOVNICA",
                 "ZipCode": "10251",
@@ -135,6 +137,7 @@
             "Dropoff": true,
             "GeoLat": 45.89170900,
             "GeoLong": 16.83863500,
+            "Partner": "iNOVINE",
             "Address": {
                 "Name": "POSLOVNICA",
                 "ZipCode": "43000",
@@ -162,6 +165,7 @@
             "Dropoff": false,
             "GeoLat": 45.23975990,
             "GeoLong": 13.93730920,
+            "Partner": "BOSO",
             "Address": {
                 "Name": "IN974",
                 "ZipCode": "52000",
@@ -203,6 +207,7 @@
             "Dropoff": false,
             "GeoLat": 44.53436667,
             "GeoLong": 14.91296667,
+            "Partner": "iNOVINE",
             "Address": {
                 "Name": "BS KOLAN PAG",
                 "ZipCode": "53291",
