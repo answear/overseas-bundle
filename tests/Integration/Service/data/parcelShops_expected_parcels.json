@@ -10,6 +10,7 @@
         },
         "remark": "",
         "shortName": "CR3403",
+        "partner": "BOSO",
         "address": {
             "name": "BS KLO\u0160TAR PODRAVSKI",
             "addressId": null,
@@ -58,6 +59,7 @@
         },
         "remark": "",
         "shortName": "IN702",
+        "partner": null,
         "address": {
             "name": "IN702",
             "addressId": null,
@@ -124,6 +126,7 @@
         },
         "remark": "ISPORUKE I PREUZIMANJA U POSLOVNICI, neaktivno",
         "shortName": "OEXZG",
+        "partner": "iNOVINE",
         "address": {
             "name": "POSLOVNICA",
             "addressId": null,
@@ -160,6 +163,7 @@
         },
         "remark": "",
         "shortName": "OEXBJ",
+        "partner": "iNOVINE",
         "address": {
             "name": "POSLOVNICA",
             "addressId": null,
@@ -196,6 +200,7 @@
         },
         "remark": "",
         "shortName": "IN974",
+        "partner": "BOSO",
         "address": {
             "name": "IN974",
             "addressId": null,
@@ -244,6 +249,7 @@
         },
         "remark": "",
         "shortName": "TF035",
+        "partner": "iNOVINE",
         "address": {
             "name": "BS KOLAN PAG",
             "addressId": null,

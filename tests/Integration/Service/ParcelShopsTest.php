@@ -122,6 +122,7 @@ class ParcelShopsTest extends TestCase
                 ],
                 'remark' => $parcelShop->remark,
                 'shortName' => $parcelShop->shortName,
+                'partner' => $parcelShop->partner,
                 'address' => [
                     'name' => $address->name,
                     'addressId' => $address->addressId,

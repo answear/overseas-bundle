@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
 
 class CamelCaseToPascalCaseNameConverter implements NameConverterInterface
 {
-    public function normalize($propertyName)
+    public function normalize($propertyName): string
     {
         return ucfirst($propertyName);
     }
@@ -16,7 +16,7 @@ class CamelCaseToPascalCaseNameConverter implements NameConverterInterface
     /**
      * {@inheritdoc}
      */
-    public function denormalize($propertyName)
+    public function denormalize($propertyName): string
     {
         $doubleU = preg_replace_callback(
             '/[A-Z]{2,}/',
