@@ -18,6 +18,7 @@ class DayType extends Enum implements \Serializable
     public const THURSDAY = 10;
     public const FRIDAY = 11;
     public const SATURDAY = 2;
+    public const SATURDAY_2 = 12;
     public const SUNDAY = 3;
 
     public static function friday(): self
@@ -58,5 +59,10 @@ class DayType extends Enum implements \Serializable
     public static function workingDay(): self
     {
         return static::get(static::WORKING_DAY);
+    }
+
+    public static function saturday2(): self
+    {
+        return static::get(static::SATURDAY_2);
     }
 }

@@ -231,8 +231,8 @@
                     "Until": "22:00:00"
                 },
                 {
-                    "Type": 3,
-                    "TypeName": "LS.Nedjeljom",
+                    "Type": 12,
+                    "TypeName": "LS.Subotom",
                     "From": "06:00:00",
                     "Until": "22:00:00"
                 }
