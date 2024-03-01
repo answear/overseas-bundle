@@ -29,7 +29,7 @@ class ParcelShop
 
     public function getCoordinates(): ?Coordinates
     {
-        return null !== $this->geoLat && null !== $this->geoLong
+        return isset($this->geoLat, $this->geoLong)
             ? new Coordinates($this->geoLat, $this->geoLong)
             : null;
     }
