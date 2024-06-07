@@ -15,7 +15,7 @@ class Error implements DenormalizableInterface
     public array $validations = [];
     public int $code;
 
-    public function denormalize(DenormalizerInterface $denormalizer, $data, $format = null, array $context = [])
+    public function denormalize(DenormalizerInterface $denormalizer, $data, $format = null, array $context = []): void
     {
         $this->validations = empty($data['Validations'])
             ? []
