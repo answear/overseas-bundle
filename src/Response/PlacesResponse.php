@@ -49,7 +49,7 @@ class PlacesResponse implements ResponseInterface, DenormalizableInterface
         $data,
         $format = null,
         array $context = []
-    ) {
+    ): void {
         $this->data = empty($data['data'])
             ? []
             : $denormalizer->denormalize(
