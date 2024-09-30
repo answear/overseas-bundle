@@ -15,13 +15,10 @@ use Answear\OverseasBundle\Serializer\Serializer;
 
 class ParcelShopsService
 {
-    private Client $client;
-    private Serializer $serializer;
-
-    public function __construct(Client $client, Serializer $serializer)
-    {
-        $this->client = $client;
-        $this->serializer = $serializer;
+    public function __construct(
+        private Client $client,
+        private Serializer $serializer,
+    ) {
     }
 
     /**
@@ -37,7 +34,7 @@ class ParcelShopsService
         /** @var ParcelShopsResponse $parcelShopsResult */
         $parcelShopsResult = $this->serializer->decodeResponse(ParcelShopsResponse::class, $response);
 
-        if (!$parcelShopsResult->getStatus()->is(StatusResult::ok())) {
+        if (StatusResult::Ok !== $parcelShopsResult->getStatus()) {
             throw new BadRequestException($parcelShopsResult);
         }
 

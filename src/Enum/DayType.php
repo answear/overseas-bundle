@@ -4,65 +4,35 @@ declare(strict_types=1);
 
 namespace Answear\OverseasBundle\Enum;
 
-use MabeEnum\Enum;
-use MabeEnum\EnumSerializableTrait;
-
-class DayType extends Enum implements \Serializable
+enum DayType: int implements \JsonSerializable
 {
-    use EnumSerializableTrait;
+    case WorkingDay = 1;
+    case Monday = 7;
+    case Tuesday = 8;
+    case Wednesday = 9;
+    case Thursday = 10;
+    case Friday = 11;
+    case Saturday = 2;
+    case Saturday2 = 12;
+    case Sunday = 3;
 
-    public const WORKING_DAY = 1;
-    public const MONDAY = 7;
-    public const TUESDAY = 8;
-    public const WEDNESDAY = 9;
-    public const THURSDAY = 10;
-    public const FRIDAY = 11;
-    public const SATURDAY = 2;
-    public const SATURDAY_2 = 12;
-    public const SUNDAY = 3;
-
-    public static function friday(): self
+    public function jsonSerialize(): int
     {
-        return static::get(static::FRIDAY);
+        return $this->value;
     }
 
-    public static function thursday(): self
+    public function getOrdinal(): int
     {
-        return static::get(static::THURSDAY);
-    }
-
-    public static function wednesday(): self
-    {
-        return static::get(static::WEDNESDAY);
-    }
-
-    public static function tuesday(): self
-    {
-        return static::get(static::TUESDAY);
-    }
-
-    public static function monday(): self
-    {
-        return static::get(static::MONDAY);
-    }
-
-    public static function sunday(): self
-    {
-        return static::get(static::SUNDAY);
-    }
-
-    public static function saturday(): self
-    {
-        return static::get(static::SATURDAY);
-    }
-
-    public static function workingDay(): self
-    {
-        return static::get(static::WORKING_DAY);
-    }
-
-    public static function saturday2(): self
-    {
-        return static::get(static::SATURDAY_2);
+        return match ($this) {
+            self::WorkingDay => 1,
+            self::Monday => 2,
+            self::Tuesday => 3,
+            self::Wednesday => 4,
+            self::Thursday => 5,
+            self::Friday => 6,
+            self::Saturday => 7,
+            self::Saturday2 => 8,
+            self::Sunday => 9,
+        };
     }
 }

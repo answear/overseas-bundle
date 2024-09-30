@@ -16,12 +16,10 @@ class OverseasLogger
     private const MAX_CONTENT_LENGTH = 3000;
     private const HUGE_CONTENT_SKIPPED = '--- HUGE CONTENT SKIPPED ---';
 
-    private LoggerInterface $logger;
     private ?string $requestId = null;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(private LoggerInterface $logger)
     {
-        $this->logger = $logger;
     }
 
     public function logRequest(string $endpoint, RequestInterface $request): void

@@ -4,34 +4,30 @@ declare(strict_types=1);
 
 namespace Answear\OverseasBundle\Serializer\Normalizer;
 
-use MabeEnum\Enum;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class EnumNormalizer implements NormalizerInterface, DenormalizerInterface
 {
-    /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        if (!$object instanceof Enum) {
-            throw new InvalidArgumentException(sprintf('The object must implement "%s".', Enum::class));
+        if (!$object instanceof \BackedEnum) {
+            throw new InvalidArgumentException(sprintf('The object must implement "%s".', \BackedEnum::class));
         }
 
-        return $object->getValue();
+        return $object->value;
     }
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return $data instanceof Enum;
+        return $data instanceof \BackedEnum;
     }
 
     public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         try {
-            $type::get($data);
+            $type::from($data);
         } catch (\Throwable $t) {
             return false;
         }
@@ -40,13 +36,11 @@ class EnumNormalizer implements NormalizerInterface, DenormalizerInterface
     }
 
     /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     *
-     * @see Enum for $type
+     * @see \BackedEnum for $type
      */
-    public function denormalize($data, $type, $format = null, array $context = [])
+    public function denormalize($data, $type, $format = null, array $context = []): \BackedEnum
     {
-        return $type::get($data);
+        return $type::from($data);
     }
 
     public function hasCacheableSupportsMethod(): bool
@@ -57,7 +51,7 @@ class EnumNormalizer implements NormalizerInterface, DenormalizerInterface
     public function getSupportedTypes(?string $format): array
     {
         return [
-            Enum::class => true,
+            \BackedEnum::class => true,
         ];
     }
 }

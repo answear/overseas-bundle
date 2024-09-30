@@ -18,6 +18,7 @@ use Answear\OverseasBundle\Service\ParcelShopsService;
 use Answear\OverseasBundle\Tests\MockGuzzleTrait;
 use Answear\OverseasBundle\Tests\Util\FileTestUtil;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -36,9 +37,7 @@ class ParcelShopsTest extends TestCase
         $this->serializer = new Serializer();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function successfulGetOffices(): void
     {
         $this->client = $this->getClient();
@@ -50,9 +49,7 @@ class ParcelShopsTest extends TestCase
         $this->assertOfficeSame($service->get());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function badRequestTest(): void
     {
         $this->client = $this->getClient(false);
@@ -65,8 +62,8 @@ class ParcelShopsTest extends TestCase
             $service->get();
         } catch (BadRequestException $exception) {
             self::assertSame('Error occurs.', $exception->getMessage());
-            self::assertTrue($exception->getResponse()->getStatus()->is(StatusResult::error()));
-            self::assertInstanceOf(Error::class, $exception->getResponse()->getError());
+            self::assertSame($exception->response->getStatus(), StatusResult::Error);
+            self::assertInstanceOf(Error::class, $exception->response->getError());
 
             return;
         }
@@ -79,7 +76,7 @@ class ParcelShopsTest extends TestCase
         return new Client(
             new RequestTransformer(
                 $this->serializer,
-                new ConfigProvider(EnvironmentEnum::TEST, 'api-key')
+                new ConfigProvider(EnvironmentEnum::Test->value, 'api-key')
             ),
             new OverseasLogger($withLogger ? $this->getLogger() : new NullLogger()),
             $this->setupGuzzleClient()
@@ -104,7 +101,7 @@ class ParcelShopsTest extends TestCase
             $actualWorkingHours = [];
             foreach ($workingHours as $workingHour) {
                 $actualWorkingHours[] = [
-                    'type' => $workingHour->type->getValue(),
+                    'type' => $workingHour->type->value,
                     'typeName' => $workingHour->typeName,
                     'from' => $workingHour->from,
                     'until' => $workingHour->until,

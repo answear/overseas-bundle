@@ -9,15 +9,11 @@ class GetPlaces implements RequestInterface
     private const ENDPOINT = 'places';
     private const HTTP_METHOD = 'GET';
 
-    public ?string $zipCode;
-    public ?string $name;
-    public ?bool $approx;
-
-    public function __construct(?string $zipCode = null, ?string $name = null, ?bool $approx = null)
-    {
-        $this->zipCode = $zipCode;
-        $this->name = $name;
-        $this->approx = $approx;
+    public function __construct(
+        public readonly ?string $zipCode = null,
+        public readonly ?string $name = null,
+        public readonly ?bool $approx = null,
+    ) {
     }
 
     public function getEndpoint(): string
