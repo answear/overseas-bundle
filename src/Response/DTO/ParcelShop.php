@@ -52,7 +52,7 @@ class ParcelShop
                 if (null === $b->type) {
                     return 1;
                 }
-                if ($a->type->is($b->type)) {
+                if ($a->type === $b->type) {
                     return $a->from <=> $b->from;
                 }
 

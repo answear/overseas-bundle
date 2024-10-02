@@ -9,21 +9,15 @@ use Answear\OverseasBundle\Response\ResponseInterface;
 
 class BadRequestException extends \RuntimeException
 {
-    private ResponseInterface $response;
-
-    public function __construct(ResponseInterface $response, ?\Throwable $previous = null)
-    {
+    public function __construct(
+        public readonly ResponseInterface $response,
+        ?\Throwable $previous = null,
+    ) {
         $message = 'Error occurs.';
-        if ($response->getStatus()->is(StatusResult::validationFailed())) {
+        if (StatusResult::ValidationFailed === $response->getStatus()) {
             $message = 'Validation failed.';
         }
+
         parent::__construct($message, 0, $previous);
-
-        $this->response = $response;
-    }
-
-    public function getResponse(): ResponseInterface
-    {
-        return $this->response;
     }
 }

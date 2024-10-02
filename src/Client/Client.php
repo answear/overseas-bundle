@@ -16,17 +16,11 @@ class Client
     private const CONNECTION_TIMEOUT = 10;
     private const TIMEOUT = 30;
 
-    private ClientInterface $client;
-    private RequestTransformer $transformer;
-    private OverseasLogger $overseasLogger;
-
     public function __construct(
-        RequestTransformer $transformer,
-        OverseasLogger $overseasLogger,
-        ?ClientInterface $client = null
+        private RequestTransformer $transformer,
+        private OverseasLogger $overseasLogger,
+        private ?ClientInterface $client = null,
     ) {
-        $this->transformer = $transformer;
-        $this->overseasLogger = $overseasLogger;
         $this->client = $client ?? new \GuzzleHttp\Client(['timeout' => self::TIMEOUT, 'connect_timeout' => self::CONNECTION_TIMEOUT]);
     }
 

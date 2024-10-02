@@ -18,6 +18,8 @@ use Answear\OverseasBundle\Service\PlacesService;
 use Answear\OverseasBundle\Tests\MockGuzzleTrait;
 use Answear\OverseasBundle\Tests\Util\FileTestUtil;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -36,10 +38,8 @@ class PlacesTest extends TestCase
         $this->serializer = new Serializer();
     }
 
-    /**
-     * @test
-     * @dataProvider providePlacesParams
-     */
+    #[Test]
+    #[DataProvider('providePlacesParams')]
     public function successfulPlaces(?string $zipCode = null, ?string $name = null, ?bool $approx = null): void
     {
         $this->client = $this->getClient(
@@ -58,7 +58,7 @@ class PlacesTest extends TestCase
         $this->assertPlacesSame($service->get($zipCode, $name, $approx));
     }
 
-    public function providePlacesParams(): iterable
+    public static function providePlacesParams(): iterable
     {
         yield [];
 
@@ -69,9 +69,7 @@ class PlacesTest extends TestCase
         yield ['23764', 'name', true];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function badRequestTest(): void
     {
         $this->client = $this->getClient(false);
@@ -84,8 +82,8 @@ class PlacesTest extends TestCase
             $service->get();
         } catch (BadRequestException $exception) {
             self::assertSame('Error occurs.', $exception->getMessage());
-            self::assertTrue($exception->getResponse()->getStatus()->is(StatusResult::error()));
-            self::assertInstanceOf(Error::class, $exception->getResponse()->getError());
+            self::assertSame($exception->response->getStatus(), StatusResult::Error);
+            self::assertInstanceOf(Error::class, $exception->response->getError());
 
             return;
         }
@@ -93,9 +91,7 @@ class PlacesTest extends TestCase
         $this->fail('BadRequestException expected.');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function invalidZipcodeTest(): void
     {
         $this->client = $this->getClient(false);
@@ -113,7 +109,7 @@ class PlacesTest extends TestCase
         return new Client(
             new RequestTransformer(
                 $this->serializer,
-                new ConfigProvider(EnvironmentEnum::TEST, 'api-key')
+                new ConfigProvider(EnvironmentEnum::Test->value, 'api-key')
             ),
             new OverseasLogger($withLogger ? $this->getLogger($uriParams) : new NullLogger()),
             $this->setupGuzzleClient()

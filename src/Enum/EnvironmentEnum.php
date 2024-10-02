@@ -4,23 +4,19 @@ declare(strict_types=1);
 
 namespace Answear\OverseasBundle\Enum;
 
-use MabeEnum\Enum;
-use MabeEnum\EnumSerializableTrait;
-
-class EnvironmentEnum extends Enum implements \Serializable
+enum EnvironmentEnum: string
 {
-    use EnumSerializableTrait;
+    case Prod = 'prod';
+    case Test = 'test';
 
-    public const PROD = 'prod';
-    public const TEST = 'test';
-
-    public static function prod(): self
+    /**
+     * @return string[]
+     */
+    public static function getValues(): array
     {
-        return static::get(static::PROD);
-    }
-
-    public static function test(): self
-    {
-        return static::get(static::TEST);
+        return [
+            self::Prod->value,
+            self::Test->value,
+        ];
     }
 }

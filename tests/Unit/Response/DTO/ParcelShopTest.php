@@ -7,14 +7,14 @@ namespace Answear\OverseasBundle\Tests\Unit\Response\DTO;
 use Answear\OverseasBundle\Enum\DayType;
 use Answear\OverseasBundle\Response\DTO\ParcelShop;
 use Answear\OverseasBundle\Response\DTO\WorkingHours;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class ParcelShopTest extends TestCase
 {
-    /**
-     * @dataProvider provideWorkingHoursSortedCorrectly
-     * @test
-     */
+    #[Test]
+    #[DataProvider('provideWorkingHoursSortedCorrectly')]
     public function workingHoursSortedCorrectly(array $workingHours, array $expected): void
     {
         $shop = new ParcelShop();
@@ -22,17 +22,17 @@ class ParcelShopTest extends TestCase
         self::assertSame($expected, $shop->getSortedWorkingHours());
     }
 
-    public function provideWorkingHoursSortedCorrectly(): iterable
+    public static function provideWorkingHoursSortedCorrectly(): iterable
     {
         $nulledType = new WorkingHours();
-        $workingDays = $this->createWorkingHours(DayType::workingDay());
-        $monday = $this->createWorkingHours(DayType::monday());
-        $tuesday = $this->createWorkingHours(DayType::tuesday());
-        $wednesday = $this->createWorkingHours(DayType::wednesday());
-        $thursday = $this->createWorkingHours(DayType::thursday());
-        $friday = $this->createWorkingHours(DayType::friday());
-        $saturday = $this->createWorkingHours(DayType::saturday());
-        $sunday = $this->createWorkingHours(DayType::sunday());
+        $workingDays = self::createWorkingHours(DayType::WorkingDay);
+        $monday = self::createWorkingHours(DayType::Monday);
+        $tuesday = self::createWorkingHours(DayType::Tuesday);
+        $wednesday = self::createWorkingHours(DayType::Wednesday);
+        $thursday = self::createWorkingHours(DayType::Thursday);
+        $friday = self::createWorkingHours(DayType::Friday);
+        $saturday = self::createWorkingHours(DayType::Saturday);
+        $sunday = self::createWorkingHours(DayType::Sunday);
 
         yield 'with working days, already sorted' => [
             [$workingDays, $saturday, $sunday],
@@ -55,15 +55,15 @@ class ParcelShopTest extends TestCase
             [$nulledType, $workingDays, $saturday, $sunday],
         ];
 
-        $saturdayFirstPart = $this->createWorkingHours(DayType::saturday(), '09:00', '11:00');
-        $saturdaySecondPart = $this->createWorkingHours(DayType::saturday(), '14:00', '16:00');
+        $saturdayFirstPart = self::createWorkingHours(DayType::Saturday, '09:00', '11:00');
+        $saturdaySecondPart = self::createWorkingHours(DayType::Saturday, '14:00', '16:00');
         yield 'day parts' => [
             [$saturdaySecondPart, $workingDays, $saturdayFirstPart, $sunday],
             [$workingDays, $saturdayFirstPart, $saturdaySecondPart, $sunday],
         ];
     }
 
-    private function createWorkingHours(DayType $dayType, string $from = '09:00', string $until = '17:00'): WorkingHours
+    private static function createWorkingHours(DayType $dayType, string $from = '09:00', string $until = '17:00'): WorkingHours
     {
         $workingHours = new WorkingHours();
         $workingHours->setType($dayType);

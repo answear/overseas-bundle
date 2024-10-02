@@ -12,21 +12,16 @@ use GuzzleHttp\Psr7\Uri;
 
 class RequestTransformer
 {
-    private Serializer $serializer;
-    private ConfigProvider $configuration;
-
     public function __construct(
-        Serializer $serializer,
-        ConfigProvider $configuration
+        private Serializer $serializer,
+        private ConfigProvider $configuration,
     ) {
-        $this->serializer = $serializer;
-        $this->configuration = $configuration;
     }
 
     public function transform(RequestInterface $request): HttpRequest
     {
         $uri = $this->configuration->getUrl() . $request->getEndpoint()
-            . '?apiKey=' . $this->configuration->getApiKey();
+            . '?apiKey=' . $this->configuration->apiKey;
 
         if (null !== $request->getUrlQuery()) {
             $uri .= '&' . $request->getUrlQuery();

@@ -13,14 +13,14 @@ trait ResponsePartialDenormalizeTrait
 {
     public function denormalizeStatus(array $data): StatusResult
     {
-        return StatusResult::get($data['status']);
+        return StatusResult::from($data['status']);
     }
 
     public function denormalizeError(
         DenormalizerInterface $denormalizer,
         $data,
         $format = null,
-        array $context = []
+        array $context = [],
     ): ?Error {
         return empty($data['error'])
             ? null : $denormalizer->denormalize(
@@ -38,7 +38,7 @@ trait ResponsePartialDenormalizeTrait
         DenormalizerInterface $denormalizer,
         $data,
         $format = null,
-        array $context = []
+        array $context = [],
     ): array {
         return empty($data['validations'])
             ? []
