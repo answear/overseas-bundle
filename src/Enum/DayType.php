@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Answear\OverseasBundle\Enum;
 
-enum DayType: int implements \JsonSerializable
+enum DayType: int
 {
     case WorkingDay = 1;
     case Monday = 7;
@@ -15,11 +15,6 @@ enum DayType: int implements \JsonSerializable
     case Saturday = 2;
     case Saturday2 = 12;
     case Sunday = 3;
-
-    public function jsonSerialize(): int
-    {
-        return $this->value;
-    }
 
     public function getOrdinal(): int
     {

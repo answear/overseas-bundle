@@ -4,15 +4,10 @@ declare(strict_types=1);
 
 namespace Answear\OverseasBundle\Enum;
 
-enum EnvironmentEnum: string implements \JsonSerializable
+enum EnvironmentEnum: string
 {
     case Prod = 'prod';
     case Test = 'test';
-
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
 
     /**
      * @return string[]
