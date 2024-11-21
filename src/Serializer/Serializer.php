@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Answear\OverseasBundle\Serializer;
 
 use Answear\OverseasBundle\Request\RequestInterface;
-use Answear\OverseasBundle\Serializer\Normalizer\EnumNormalizer;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -47,7 +46,7 @@ class Serializer
                             Normalizer\DateTimeNormalizer::FORMAT_KEY => 'Y-m-d\\TH:i:s.uP',
                         ]
                     ),
-                    new EnumNormalizer(),
+                    new Normalizer\BackedEnumNormalizer(),
                     new Normalizer\PropertyNormalizer(
                         null,
                         new CamelCaseToPascalCaseNameConverter(),
