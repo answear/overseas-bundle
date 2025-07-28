@@ -12,6 +12,7 @@ use Answear\OverseasBundle\Request\GetPlaces;
 use Answear\OverseasBundle\Response\DTO\Place;
 use Answear\OverseasBundle\Response\PlacesResponse;
 use Answear\OverseasBundle\Serializer\Serializer;
+use Psr\Http\Message\ResponseInterface;
 
 class PlacesService
 {
@@ -29,7 +30,7 @@ class PlacesService
      */
     public function get(?string $zipCode = null, ?string $name = null, ?bool $approx = null): array
     {
-        $response = $this->client->request(new GetPlaces($zipCode, $name, $approx));
+        $response = $this->getResponse($zipCode, $name, $approx);
 
         /** @var PlacesResponse $placesResponse */
         $placesResponse = $this->serializer->decodeResponse(PlacesResponse::class, $response);
@@ -39,5 +40,10 @@ class PlacesService
         }
 
         return $placesResponse->data;
+    }
+
+    public function getResponse(?string $zipCode = null, ?string $name = null, ?bool $approx = null): ResponseInterface
+    {
+        return $this->client->request(new GetPlaces($zipCode, $name, $approx));
     }
 }
