@@ -12,6 +12,7 @@ use Answear\OverseasBundle\Request\GetParcelShops;
 use Answear\OverseasBundle\Response\DTO\ParcelShop;
 use Answear\OverseasBundle\Response\ParcelShopsResponse;
 use Answear\OverseasBundle\Serializer\Serializer;
+use Psr\Http\Message\ResponseInterface;
 
 class ParcelShopsService
 {
@@ -29,7 +30,7 @@ class ParcelShopsService
      */
     public function get(): array
     {
-        $response = $this->client->request(new GetParcelShops());
+        $response = $this->getResponse();
 
         /** @var ParcelShopsResponse $parcelShopsResult */
         $parcelShopsResult = $this->serializer->decodeResponse(ParcelShopsResponse::class, $response);
@@ -39,5 +40,10 @@ class ParcelShopsService
         }
 
         return $parcelShopsResult->data;
+    }
+
+    public function getResponse(): ResponseInterface
+    {
+        return $this->client->request(new GetParcelShops());
     }
 }

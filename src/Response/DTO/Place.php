@@ -14,4 +14,15 @@ class Place
         public ?bool $cargoAvailable = null,
     ) {
     }
+
+    public static function fromArray(array $data): Place
+    {
+        return new self(
+            $data['ZipCode'],
+            $data['Name'],
+            $data['ZipcodeName'],
+            $data['StandardAvailable'] ?? null,
+            $data['CargoAvailable'] ?? null,
+        );
+    }
 }
